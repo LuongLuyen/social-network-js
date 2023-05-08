@@ -1,14 +1,44 @@
-use socialnetwork;
+CREATE DATABASE social_network DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+use social_network;
 
-CREATE TABLE author(
-  id bigint NOT NULL PRIMARY KEY auto_increment,
-  name VARCHAR(255) NOT NULL,
+
+CREATE TABLE IF NOT EXISTS Users (
+  id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  full_name VARCHAR(127) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  avatar_url VARCHAR(255) NOT NULL,
+  interested_user VARCHAR(255) NOT NULL
+);
+CREATE TABLE IF NOT EXISTS UserInfo (
+  id INT UNIQUE NOT NULL,
+  is_active INT NOT NULL,
+  study_at VARCHAR(127) NOT NULL,
+  working_at VARCHAR(127) NOT NULL,
+  favorites VARCHAR(1023) NOT NULL,
+  other_info VARCHAR(1023) NOT NULL,
+  date_of_birth VARCHAR(100) NOT NULL,
+  FOREIGN KEY (id) REFERENCES Users (id)
 );
 
-CREATE TABLE mes (
-  id bigint NOT NULL PRIMARY KEY auto_increment,
-  content TEXT NOT NULL,
-  author_id bigint NOT NULL,
+
+CREATE TABLE IF NOT EXISTS UserRela (
+  id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  follower INT NOT NULL,
+  FOREIGN KEY (follower) REFERENCES Users (id)
 );
 
-ALTER TABLE mes ADD CONSTRAINT fk_mes_author FOREIGN KEY (mes) REFERENCES author(id);
+CREATE TABLE IF NOT EXISTS Posts (
+  id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  user_id INT NOT NULL,
+  content VARCHAR(3000) NOT NULL,
+  like_count INT NOT NULL,
+  FOREIGN KEY (user_id) REFERENCES Users (id)
+);
+
+CREATE TABLE IF NOT EXISTS Likes (
+  id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  user_id INT NOT NULL,
+  post_id INT NOT NULL,
+  FOREIGN KEY (user_id) REFERENCES Users (id),
+  FOREIGN KEY (post_id) REFERENCES Posts (id)
+);
