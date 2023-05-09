@@ -7,7 +7,6 @@ const routes = require("./src/router/route")
 const app = express()
 const server = http.createServer(app)
 
-// Add headers before the routes are defined
 app.use((req, res, next) =>{
 	res.setHeader('Access-Control-Allow-Origin', "*")
 	res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE')
