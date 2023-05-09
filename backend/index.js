@@ -4,7 +4,6 @@ const dotenv = require("dotenv")
 const cors = require("cors")
 const routes = require("./src/router/route")
 
-
 const app = express()
 const server = http.createServer(app)
 
@@ -28,5 +27,5 @@ app.use('/',routes)
 
 
 server.listen(PORT, () =>
-  console.log(`App listening on port ${PORT}!`)
+    console.log(`App listening on port ${PORT}!`)
 )

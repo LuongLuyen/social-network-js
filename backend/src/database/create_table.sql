@@ -4,6 +4,8 @@ use social_network;
 
 CREATE TABLE IF NOT EXISTS Users (
   id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  username VARCHAR(150) NOT NULL,
+  password VARCHAR(150) NOT NULL,
   full_name VARCHAR(127) NOT NULL,
   email VARCHAR(255) NOT NULL,
   avatar_url VARCHAR(255) NOT NULL,

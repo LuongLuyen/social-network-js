@@ -1,14 +1,14 @@
-const getAllUser = async () => {
-    return new Promise(async (resolve, reject) => {
-        try {
-            const user={
-                name:"tuan",
-                password:"123"
+const User = require('../dao/userDAO')
+
+const getAllUser = () => {
+    return new Promise((resolve, reject) => {
+        User.getAllUser((err,rows)=>{
+            if(err){
+                reject(err)
+            } else {
+                resolve(rows)
             }
-            resolve(user)
-        } catch (err) {
-            reject(err)
-        }
+        })
     })
 }
 module.exports = {
