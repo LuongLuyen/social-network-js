@@ -13,5 +13,6 @@ router.get('/user/:id',homeController.getByIdCRUDUser)
 router.delete('/user/:id',homeController.deleteCRUDUser)
 router.put('/user/:id',homeController.updateCRUDUser)
 
+//  http://localhost:5000/userinfo
 
 module.exports = router
