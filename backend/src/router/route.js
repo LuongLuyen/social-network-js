@@ -1,5 +1,5 @@
 const { Router } = require("express")
-const homeController = require("../controller/userController")
+const userController = require("../controller/userController")
 const router = require("express").Router()
 
 router.get('/', (req, res) => {
@@ -7,12 +7,11 @@ router.get('/', (req, res) => {
 })
 
 //  http://localhost:5000/user
-router.get('/user',homeController.getCRUDAllUser)
-router.post('/user',homeController.createCRUDUser)
-router.get('/user/:id',homeController.getByIdCRUDUser)
-router.delete('/user/:id',homeController.deleteCRUDUser)
-router.put('/user/:id',homeController.updateCRUDUser)
+router.get('/user',userController.getCRUDAllUser)
+router.post('/user',userController.createCRUDUser)
+router.get('/user/:id',userController.getByIdCRUDUser)
+router.delete('/user/:id',userController.deleteCRUDUser)
+router.put('/user/:id',userController.updateCRUDUser)
 
-//  http://localhost:5000/userinfo
 
 module.exports = router

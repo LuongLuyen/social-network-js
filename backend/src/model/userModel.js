@@ -1,10 +1,13 @@
-function User (id,username,password,full_name,email,avatar_url,interested_user){
-    this.id = id
-    this.username = username
-    this.password = password
-    this.full_name = full_name
-    this.email = email
-    this.avatar_url = avatar_url
-    this.interested_user = interested_user
+function User (user){
+    this.id = user.id
+    this.username = user.username
+    this.password = user.password
+    this.full_name = user.full_name
+    this.email = user.email
+    this.study_at = user.study_at
+    this.working_at = user.working_at
+    this.other_info = user.other_info
+    this.date_of_birth = user.date_of_birth
+    this.avatar_url = user.avatar_url
 }
 module.exports = User

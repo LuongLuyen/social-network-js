@@ -2,63 +2,60 @@ const User = require('../dao/userDAO')
 
 const getAllUser = () => {
     return new Promise((resolve, reject) => {
-        User.getAllUser((err,rows)=>{
-            if(err){
-                reject(err)
-            } else {
-                resolve(rows)
-            }
-        })
+        try {
+            const user = User.find()
+            resolve(user)
+        } catch (err) {
+            reject(err)
+        }
     })
 }
 const getByIdUser = (req) => {
     return new Promise((resolve, reject) => {
-        User.getByIdUser(req.params.id,(err,rows)=>{
-            if(err){
-                reject(err)
-            } else {
-                resolve(rows)
-            }
-        })
+        try {
+            const user = User.findById(req.params.id)
+            resolve(user)
+        } catch (err) {
+            reject(err)
+        }
     })
 }
 const createUser = (req) => {
     return new Promise((resolve, reject) => {
-        User.createUser(req.body,(err,count)=>{
-            if(err){
-                reject(err)
-            } else{
-                resolve(count)
-            }
-        })
+        try {
+            const user = User.create(req.body)
+            resolve(user)
+        } catch (err) {
+            reject(err)
+        }
     })
 }
 const deleteUser = (req) => {
     return new Promise((resolve, reject) => {
-        User.deleteUser(req.params.id,(err,rows)=>{
-            if(err){
-                reject(err)
-            } else {
-                resolve(rows)
-            }
-        })
+        try {
+            const user = User.destroy(req.params.id)
+            resolve(user)
+        } catch (err) {
+            reject(err)
+        }
     })
 }
 const updateUser = (req) => {
     return new Promise((resolve, reject) => {
-        User.updateUser(req.params.id,req.body,(err,rows)=>{
-            if(err){
-                reject(err)
-            } else {
-                resolve(rows)
-            }
-        })
+        try {
+            const user = User.update(req.params.id,req.body)
+            resolve(user)
+        } catch (err) {
+            reject(err)
+        }
     })
 }
+
+
 module.exports = {
     getAllUser: getAllUser,
     createUser: createUser,
     getByIdUser: getByIdUser,
     deleteUser: deleteUser,
-    updateUser: updateUser
+    updateUser: updateUser,
 }

@@ -19,10 +19,12 @@ const updateCRUDUser = async (req, res) => {
     const data = await userService.updateUser(req)
     return res.json(data)
 }
+
+
 module.exports = {
     getCRUDAllUser: getCRUDAllUser,
     createCRUDUser: createCRUDUser,
     getByIdCRUDUser: getByIdCRUDUser,
     deleteCRUDUser: deleteCRUDUser,
-    updateCRUDUser: updateCRUDUser
+    updateCRUDUser: updateCRUDUser,
 }
