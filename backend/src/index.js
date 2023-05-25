@@ -2,7 +2,7 @@ const express = require("express")
 const http = require("http")
 const dotenv = require("dotenv")
 const cors = require("cors")
-const routes = require("./src/router/route")
+const routes = require("./router/route")
 
 const app = express()
 const server = http.createServer(app)
