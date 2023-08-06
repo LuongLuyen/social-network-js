@@ -1,8 +1,8 @@
 const express = require("express")
 const http = require("http")
 const dotenv = require("dotenv")
-const cors = require("cors")
-const routes = require("./router/route")
+const routerAdmin = require("./router/routeAdmin")
+const routerUser = require("./router/routeUser")
 
 const app = express()
 const server = http.createServer(app)
@@ -18,12 +18,11 @@ app.use((req, res, next) =>{
 const PORT = process.env.PORT || 5000
 
 dotenv.config()
-app.use(cors())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
-app.use('/',routes)
-
+app.use('/admin-api',routerAdmin)
+app.use('/user-api',routerUser)
 
 server.listen(PORT, () =>
     console.log(`App listening on port ${PORT}!`)
