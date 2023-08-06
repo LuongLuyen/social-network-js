@@ -1,7 +1,11 @@
 function Post (post){
     this.id = post.id
-    this.user_id = post.user_id
+    this.userId = post.userId
     this.content = post.content
-    this.like_count = post.like_count
+    this.contentUrl = post.contentUrl
+    this.likeCount = post.likeCount
+    this.shareCount = post.shareCount
+    this.commentCount = post.commentCount
+    this.category = post.category
 }
 module.exports = Post

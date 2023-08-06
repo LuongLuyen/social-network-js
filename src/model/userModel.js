@@ -1,13 +1,9 @@
 function User (user){
     this.id = user.id
-    this.username = user.username
+    this.userName = user.userName
     this.password = user.password
-    this.full_name = user.full_name
+    this.fullName = user.fullName
     this.email = user.email
-    this.study_at = user.study_at
-    this.working_at = user.working_at
-    this.other_info = user.other_info
-    this.date_of_birth = user.date_of_birth
-    this.avatar_url = user.avatar_url
+    this.role = user.role
 }
 module.exports = User

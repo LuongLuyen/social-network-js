@@ -35,7 +35,7 @@ const getByIdPost = (req) => {
 const deletePost = (req) => {
     return new Promise((resolve, reject) => {
         try {
-            const post = Post.destroy(req.params.id)
+            const post = Post.destroy(req.body.id)
             resolve(post)
         } catch (err) {
             reject(err)
@@ -45,7 +45,7 @@ const deletePost = (req) => {
 const updatePost = (req) => {
     return new Promise((resolve, reject) => {
         try {
-            const post = Post.update(req.params.id,req.body)
+            const post = Post.update(req.body)
             resolve(post)
         } catch (err) {
             reject(err)

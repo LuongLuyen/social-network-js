@@ -16,16 +16,20 @@ const find = ()=> {
 const create = (data)=> {
 	return new Promise((resolve, reject) => {
 		const post = new Post(data)
-		const sql = "Insert into posts(user_id,content,like_count) values(?,?,?)"
+		const sql = "Insert into posts(userId,content,contentUrl,likeCount,shareCount,commentCount,category) values(?,?,?,?,?,?,?)"
 		db.query(sql,[
-			post.user_id,
+			post.userId,
 			post.content,
-			post.like_count
+			post.contentUrl,
+			post.likeCount,
+			post.shareCount,
+			post.commentCount,
+			post.category
 		], (err,results)=>{
 			if(err){
 				reject(err)
 			} else {
-				resolve(results)
+				resolve(post)
 			}
 		}) 
 	})
@@ -51,26 +55,30 @@ const destroy = (id)=> {
 			if(err){
 				reject(err)
 			} else {
-				resolve(results)
+				resolve({"idDelete":id})
 			}
 		}) 
 	})
 }
 
-const update = (id,data)=> {
+const update = (data)=> {
 	return new Promise((resolve, reject) => {
 		const post = new Post(data)
-        const sql = "update posts set user_id=?,content=?,like_count=? where Id=?"
+        const sql = "update posts set userId=?,content=?,contentUrl=?,likeCount=?,shareCount=?,commentCount=?,category=? where Id=?"
 		db.query(sql,[
-			post.user_id,
+			post.userId,
 			post.content,
-			post.like_count,
-			id
+			post.contentUrl,
+			post.likeCount,
+			post.shareCount,
+			post.commentCount,
+			post.category,
+			post.id
 		], (err,results)=>{
 			if(err){
 				reject(err)
 			} else {
-				resolve(results)
+				resolve({"idUpdated":post.id})
 			}
 		}) 
 	})

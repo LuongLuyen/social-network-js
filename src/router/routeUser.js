@@ -9,16 +9,18 @@ router.get('/', (req, res) => {
 })
 
 //  http://localhost:5000/user-api/user
-router.post('/user', userMiddleare.checkLogin, userController.createCRUDUser)
-router.get('/user/:id', userMiddleare.checkLogin, userController.getByIdCRUDUser)
-router.delete('/user/:id', userMiddleare.checkLogin, userController.deleteCRUDUser)
-router.put('/user/:id', userMiddleare.checkLogin, userController.updateCRUDUser)
+router.post('/user', userController.createCRUDUser)
+router.get('/user/:id', userController.getByIdCRUDUser)
+
+router.delete('/user', userMiddleare.checkLogin, userController.deleteCRUDUser)
+router.put('/user', userMiddleare.checkLogin, userController.updateCRUDUser)
 
 //   http://localhost:5000/user-api/post
 router.get('/post',postController.getCRUDAllPost)
+router.get('/post/:id', postController.getByIdCRUDPost)
+
 router.post('/post', userMiddleare.checkLogin, postController.createCRUDPost)
-router.get('/post/:id', userMiddleare.checkLogin, postController.getByIdCRUDPost)
-router.delete('/post/:id', userMiddleare.checkLogin, postController.deleteCRUDPost)
-router.put('/post/:id', userMiddleare.checkLogin, postController.updateCRUDPost)
+router.delete('/post', userMiddleare.checkLogin, postController.deleteCRUDPost)
+router.put('/post', userMiddleare.checkLogin, postController.updateCRUDPost)
 
 module.exports = router

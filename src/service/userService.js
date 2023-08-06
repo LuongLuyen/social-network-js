@@ -33,7 +33,7 @@ const createUser = (req) => {
 const deleteUser = (req) => {
     return new Promise((resolve, reject) => {
         try {
-            const user = User.destroy(req.params.id)
+            const user = User.destroy(req.body.id)
             resolve(user)
         } catch (err) {
             reject(err)
@@ -43,7 +43,7 @@ const deleteUser = (req) => {
 const updateUser = (req) => {
     return new Promise((resolve, reject) => {
         try {
-            const user = User.update(req.params.id,req.body)
+            const user = User.update(req.body)
             resolve(user)
         } catch (err) {
             reject(err)

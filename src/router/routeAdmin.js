@@ -3,8 +3,8 @@ const userController = require("../controller/userController")
 const userMiddleare = require("../middleware/userMiddleware")
 const router = require("express").Router()
 
-//  http://localhost:5000/admin-api/user:token
+//  http://localhost:5000/admin-api/user:role
 router.get('/user', userMiddleare.checkAdmin)
-router.get('/user/:token', userMiddleare.checkAdmin, userController.getCRUDAllUser)
+router.get('/user/:role', userMiddleare.checkAdmin, userController.getCRUDAllUser)
 
 module.exports = router

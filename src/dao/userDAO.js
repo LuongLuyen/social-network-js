@@ -28,22 +28,18 @@ const findById = (id)=> {
 const create = (data)=> {
 	return new Promise((resolve, reject) => {
 		const user = new User(data)
-		const sql = "Insert into users(username,password,full_name,email,study_at,working_at,other_info,date_of_birth,avatar_url) values(?,?,?,?,?,?,?,?,?)"
+		const sql = "Insert into users(userName,password,fullName,email,role) values(?,?,?,?,?)"
 		db.query(sql,[
-			user.username,
+			user.userName,
 			user.password,
-			user.full_name,
+			user.fullName,
 			user.email,
-			user.study_at,
-			user.working_at,
-			user.other_info,
-			user.date_of_birth,
-			user.avatar_url,
+			user.role
 		], (err,results)=>{
 			if(err){
 				reject(err)
 			} else {
-				resolve(results)
+				resolve(user)
 			}
 		}) 
 	})
@@ -55,31 +51,27 @@ const destroy = (id)=> {
 			if(err){
 				reject(err)
 			} else {
-				resolve(results)
+				resolve({"idDelete":id})
 			}
 		}) 
 	})
 }
-const update = (id,data)=> {
+const update = (data)=> {
 	return new Promise((resolve, reject) => {
 		const user = new User(data)
-        const sql = "update users set username=?,password=?,full_name=?,email=?,study_at=?,working_at=?,other_info=?,date_of_birth=?,avatar_url=? where Id=?"
+        const sql = "update users set userName=?,password=?,fullName=?,email=?,role=? where Id=?"
 		db.query(sql,[
-			user.username,
+			user.userName,
 			user.password,
-			user.full_name,
+			user.fullName,
 			user.email,
-			user.study_at,
-			user.working_at,
-			user.other_info,
-			user.date_of_birth,
-			user.avatar_url,
-			id
+			user.role,
+			user.id
 		], (err,results)=>{
 			if(err){
 				reject(err)
 			} else {
-				resolve(results)
+				resolve({"idUpdated":user.id})
 			}
 		}) 
 	})
