@@ -1,8 +1,12 @@
 const express = require("express")
 const http = require("http")
+const path = require("path")
 const dotenv = require("dotenv")
 const routerAdmin = require("./router/routeAdmin")
 const routerUser = require("./router/routeUser")
+
+dotenv.config()
+const PORT = process.env.PORT || 5000
 
 const app = express()
 const server = http.createServer(app)
@@ -15,14 +19,13 @@ app.use((req, res, next) =>{
 	next()
 })
 
-const PORT = process.env.PORT || 5000
-
-dotenv.config()
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
-app.use('/admin-api',routerAdmin)
-app.use('/user-api',routerUser)
+app.use('/public', express.static(path.join(__dirname, '/public')))
+app.use('/admin-api', routerAdmin)
+app.use('/user-api', routerUser)
+app.use('/', (req,res)=> {res.send(`<h1>App listening on port ${PORT}!</h1>`)})
 
 server.listen(PORT, () =>
     console.log(`App listening on port ${PORT}!`)

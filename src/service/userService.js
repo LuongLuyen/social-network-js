@@ -50,6 +50,17 @@ const updateUser = (req) => {
         }
     })
 }
+const loginUser =  async(req, res) => {
+    try {
+        const user = await User.findOne(req.body.userName)
+        if(user.userName === req.body.userName && user.password === req.body.password){
+            res.redirect('http://localhost:3000/home')
+        }
+        return res.redirect('http://localhost:3000')
+    } catch (err) {
+        return res.redirect('http://localhost:3000')
+    }
+}
 
 
 module.exports = {
@@ -58,4 +69,5 @@ module.exports = {
     getByIdUser: getByIdUser,
     deleteUser: deleteUser,
     updateUser: updateUser,
+    loginUser: loginUser
 }

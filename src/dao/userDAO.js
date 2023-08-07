@@ -25,6 +25,18 @@ const findById = (id)=> {
 		}) 
 	})
 }
+const findOne = (data)=> {
+	return new Promise((resolve, reject) => {
+        const sql = "select * from users where userName =?"
+		db.query(sql,[data],(err,results)=>{
+			if(err){
+				reject(err)
+			} else {
+				resolve(results[0])
+			}
+		}) 
+	})
+}
 const create = (data)=> {
 	return new Promise((resolve, reject) => {
 		const user = new User(data)
@@ -80,6 +92,7 @@ const update = (data)=> {
 module.exports = {
 	find: find,
 	findById: findById,
+	findOne: findOne,
 	create: create,
 	destroy: destroy,
 	update: update

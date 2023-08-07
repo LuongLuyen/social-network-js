@@ -4,16 +4,15 @@ const postController = require("../controller/postController")
 const userMiddleare = require("../middleware/userMiddleware")
 const router = require("express").Router()
 
-router.get('/', (req, res) => {
-	res.send(`Server is running on port 5000`)
-})
-
 //  http://localhost:5000/user-api/user
 router.post('/user', userController.createCRUDUser)
 router.get('/user/:id', userController.getByIdCRUDUser)
 
 router.delete('/user', userMiddleare.checkLogin, userController.deleteCRUDUser)
 router.put('/user', userMiddleare.checkLogin, userController.updateCRUDUser)
+
+//   http://localhost:5000/user-api/login
+router.post('/login', userController.loginUser)
 
 //   http://localhost:5000/user-api/post
 router.get('/post',postController.getCRUDAllPost)
