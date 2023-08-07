@@ -54,11 +54,15 @@ const loginUser =  async(req, res) => {
     try {
         const user = await User.findOne(req.body.userName)
         if(user.userName === req.body.userName && user.password === req.body.password){
-            res.redirect('http://localhost:3000/home')
+            if(user.role === "ADMIN"){
+                res.redirect('http://localhost:3000/admin')
+            }else if(user.role === "USER"){
+                res.redirect('http://localhost:3000/home')
+            }
         }
         return res.redirect('http://localhost:3000')
     } catch (err) {
-        return res.redirect('http://localhost:3000')
+        return null
     }
 }
 

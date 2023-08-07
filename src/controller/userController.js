@@ -21,7 +21,7 @@ const updateCRUDUser = async (req, res) => {
 }
 const loginUser = async (req, res) => {
     const data = await userService.loginUser(req,res)
-    return res.json(data)
+    return data
 }
 
 module.exports = {
