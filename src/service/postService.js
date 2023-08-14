@@ -1,14 +1,12 @@
 const Post = require('../dao/postDAO')
 
-const getAllPost = () => {
-    return new Promise((resolve, reject) => {
-        try {
-            const post = Post.find()
-            resolve(post)
-        } catch (err) {
-            reject(err)
-        }
-    })
+const getAllPost = async() => {
+    try {
+        const uap = await Post.userAndPost()
+        return uap
+    } catch (err) {
+        return null
+    }
 }
 const createPost = (req) => {
     return new Promise((resolve, reject) => {
