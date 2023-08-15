@@ -77,3 +77,85 @@ CREATE TABLE IF NOT EXISTS messages (
   FOREIGN KEY (userId) REFERENCES users (id),
   FOREIGN KEY (groupChatId) REFERENCES posts (id)
 );
+
+// postgre SQL
+
+CREATE DATABASE social_network ENCODING 'UTF8';
+
+CREATE TABLE IF NOT EXISTS users (
+  id SERIAL PRIMARY KEY NOT NULL,
+  userName VARCHAR(150) NOT NULL,
+  password VARCHAR(150) NOT NULL,
+  fullName VARCHAR(127) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  role VARCHAR(20) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS userinfos (
+  id INT UNIQUE,
+  studyAt VARCHAR(255) NOT NULL,
+  workingAt VARCHAR(255) NOT NULL,
+  otherInfo VARCHAR(1023) NOT NULL,
+  dateOfBirth VARCHAR(100) NOT NULL,
+  avatarUrl VARCHAR(255) NOT NULL,
+  FOREIGN KEY (id) REFERENCES users (id)
+);
+
+CREATE TABLE IF NOT EXISTS posts (
+  id SERIAL PRIMARY KEY NOT NULL,
+  userId INT NOT NULL,
+  content VARCHAR(3000) NOT NULL,
+  contentUrl VARCHAR(255) NOT NULL,
+  likeCount INT NOT NULL,
+  shareCount INT NOT NULL,
+  commentCount INT NOT NULL,
+  category VARCHAR(150) NOT NULL,
+  FOREIGN KEY (userId) REFERENCES users (id)
+);
+
+CREATE TABLE IF NOT EXISTS notifications (
+  id SERIAL PRIMARY KEY NOT NULL,
+  postId INT NOT NULL,
+  userId INT NOT NULL,
+  content VARCHAR(255) NOT NULL,
+  FOREIGN KEY (userId) REFERENCES users (id),
+  FOREIGN KEY (postId) REFERENCES posts (id)
+);
+
+CREATE TABLE IF NOT EXISTS comments (
+  id SERIAL PRIMARY KEY NOT NULL,
+  postId INT NOT NULL,
+  userId INT NOT NULL,
+  content VARCHAR(255) NOT NULL,
+  FOREIGN KEY (userId) REFERENCES users (id),
+  FOREIGN KEY (postId) REFERENCES posts (id)
+);
+
+CREATE TABLE IF NOT EXISTS films (
+  id SERIAL PRIMARY KEY NOT NULL,
+  userId INT NOT NULL,
+  title VARCHAR(255) NOT NULL,
+  contentUrl VARCHAR(255) NOT NULL,
+  content VARCHAR(255) NOT NULL,
+  FOREIGN KEY (userId) REFERENCES users (id)
+);
+
+CREATE TABLE IF NOT EXISTS groupchats (
+  id SERIAL PRIMARY KEY NOT NULL,
+  userAdmin INT NOT NULL,
+  user1 VARCHAR(150) NOT NULL,
+  user2 VARCHAR(150) NOT NULL,
+  user3 VARCHAR(150) NOT NULL,
+  user4 VARCHAR(150) NOT NULL,
+  user5 VARCHAR(150) NOT NULL,
+  FOREIGN KEY (userAdmin) REFERENCES users (id)
+);
+
+CREATE TABLE IF NOT EXISTS messages (
+  id SERIAL PRIMARY KEY NOT NULL,
+  groupChatId INT NOT NULL,
+  userId INT NOT NULL,
+  content VARCHAR(255) NOT NULL,
+  FOREIGN KEY (userId) REFERENCES users (id),
+  FOREIGN KEY (groupChatId) REFERENCES groupchats (id)
+);
