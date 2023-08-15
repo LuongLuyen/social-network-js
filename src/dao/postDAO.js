@@ -15,53 +15,24 @@ const find = ()=> {
 }
 const userAndPost = ()=> {
 	return new Promise((resolve, reject) => {
-	// SELECT
-	// users.fullName,
-	// users.role,
-	// userinfos.avatarUrl,
-	// posts.content,
-	// posts.contentUrl,
-	// posts.likeCount,
-	// posts.shareCount,
-	// posts.commentCount,
-	// posts.category
-	// FROM users
-	// LEFT JOIN userinfos ON users.id = userinfos.id
-	// LEFT JOIN posts ON users.id = posts.userId
+		// SELECT
+		// 	u.id,
+		// 	u.fullName,
+		// 	ui.avatarUrl,
+		// 	p.content,
+		// 	p.contentUrl,
+		//  p.likeCount,
+		//  p.commentCount,
+		//  p.shareCount,
+		//  p.category
+		// FROM
+		// 	users u
+		// JOIN
+		// 	userinfos ui ON u.id = ui.id
+		// JOIN
+		// 	posts p ON u.id = p.userId
 	
-	// UNION
-	
-	// SELECT
-	// 	users.fullName,
-	// 	users.role,
-	// 	userinfos.avatarUrl,
-	// 	posts.content,
-	// 	posts.contentUrl,
-	// 	posts.likeCount,
-	// 	posts.shareCount,
-	// 	posts.commentCount,
-	// 	posts.category
-	// FROM userinfos
-	// LEFT JOIN users ON userinfos.id = users.id
-	// LEFT JOIN posts ON userinfos.id = posts.userId
-	
-	// UNION
-	
-	// SELECT
-	// 	users.fullName,
-	// 	users.role,
-	// 	userinfos.avatarUrl,
-	// 	posts.content,
-	// 	posts.contentUrl,
-	// 	posts.likeCount,
-	// 	posts.shareCount,
-	// 	posts.commentCount,
-	// 	posts.category
-	// FROM posts
-	// LEFT JOIN users ON posts.userId = users.id
-	// LEFT JOIN userinfos ON posts.userId = userinfos.id;
-
-		const sql = 'SELECT users.fullName, users.role, userinfos.avatarUrl, posts.content, posts.contentUrl, posts.likeCount, posts.shareCount, posts.commentCount, posts.category FROM users LEFT JOIN userinfos ON users.id = userinfos.id LEFT JOIN posts ON users.id = posts.userId UNION SELECT users.fullName, users.role, userinfos.avatarUrl, posts.content, posts.contentUrl, posts.likeCount, posts.shareCount, posts.commentCount, posts.category FROM userinfos LEFT JOIN users ON userinfos.id = users.id LEFT JOIN posts ON userinfos.id = posts.userId UNION SELECT users.fullName, users.role, userinfos.avatarUrl, posts.content, posts.contentUrl, posts.likeCount, posts.shareCount, posts.commentCount, posts.category FROM posts LEFT JOIN users ON posts.userId = users.id LEFT JOIN userinfos ON posts.userId = userinfos.id'
+		const sql = 'SELECT u.id, u.fullName, ui.avatarUrl, p.content, p.contentUrl, p.likeCount, p.commentCount, p.shareCount, p.category FROM users u JOIN userinfos ui ON u.id = ui.id JOIN posts p ON u.id = p.userId'
 		db.query(sql,(err,results)=>{
 			if(err){
 				reject(err)
