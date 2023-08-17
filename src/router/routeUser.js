@@ -6,6 +6,7 @@ const router = require("express").Router()
 
 //  http://localhost:5000/user-api/user
 router.post('/user', userController.createCRUDUser)
+router.get('/user/info', userController.getAllUserAndInfo)
 router.get('/user/:id', userController.getByIdCRUDUser)
 
 router.delete('/user', userMiddleare.checkLogin, userController.deleteCRUDUser)

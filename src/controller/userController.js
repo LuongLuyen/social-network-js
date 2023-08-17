@@ -3,6 +3,10 @@ const getCRUDAllUser = async (req, res) => {
     const data = await userService.getAllUser()
     return res.json(data)
 }
+const getAllUserAndInfo = async (req, res) => {
+    const data = await userService.getAllUserAndInfo()
+    return res.json(data)
+}
 const getByIdCRUDUser = async (req, res) => {
     const data = await userService.getByIdUser(req)
     return res.json(data)
@@ -30,5 +34,6 @@ module.exports = {
     getByIdCRUDUser: getByIdCRUDUser,
     deleteCRUDUser: deleteCRUDUser,
     updateCRUDUser: updateCRUDUser,
-    loginUser: loginUser
+    loginUser: loginUser,
+    getAllUserAndInfo: getAllUserAndInfo
 }

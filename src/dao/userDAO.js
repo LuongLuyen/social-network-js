@@ -13,6 +13,23 @@ const find = ()=> {
 		}) 
 	})
 }
+const userAndInfo = ()=> {
+	return new Promise((resolve, reject) => {
+	// SELECT * FROM users u
+	// LEFT JOIN userinfos ui ON u.id = ui.id
+	// UNION
+	// SELECT * FROM users u
+	// RIGHT JOIN userinfos ui ON u.id = ui.id
+		const sql = "SELECT * FROM users u LEFT JOIN userinfos ui ON u.id = ui.id UNION SELECT * FROM users u RIGHT JOIN userinfos ui ON u.id = ui.id"
+		db.query(sql,(err,results)=>{
+			if(err){
+				reject(err)
+			} else {
+				resolve(results)
+			}
+		}) 
+	})
+}
 const findById = (id)=> {
 	return new Promise((resolve, reject) => {
         const sql = "select * from users where Id=?"
@@ -95,5 +112,6 @@ module.exports = {
 	findOne: findOne,
 	create: create,
 	destroy: destroy,
-	update: update
+	update: update,
+	userAndInfo: userAndInfo
 }

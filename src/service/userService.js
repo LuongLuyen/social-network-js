@@ -10,6 +10,16 @@ const getAllUser = () => {
         }
     })
 }
+const getAllUserAndInfo = () => {
+    return new Promise((resolve, reject) => {
+        try {
+            const user = User.userAndInfo()
+            resolve(user)
+        } catch (err) {
+            reject(err)
+        }
+    })
+}
 const getByIdUser = (req) => {
     return new Promise((resolve, reject) => {
         try {
@@ -80,5 +90,6 @@ module.exports = {
     getByIdUser: getByIdUser,
     deleteUser: deleteUser,
     updateUser: updateUser,
-    loginUser: loginUser
+    loginUser: loginUser,
+    getAllUserAndInfo: getAllUserAndInfo
 }
