@@ -61,23 +61,10 @@ const updateUser = (req) => {
     })
 }
 const loginUser =  async(req, res) => {
+    const {userName, password} = (req.body)
     try {
-        const {userName, password} = (req.body)
-        if(userName === '' || password===''){
-            return res.redirect('http://localhost:3000')
-        }
-        const user = await User.findOne(req.body.userName)
-        if(user === undefined){
-            return res.redirect('http://localhost:3000')
-        }
-        if(user.userName === userName && user.password === password){
-            if(user.role === "ADMIN"){
-                res.redirect('http://localhost:3000/admin')
-            }else if(user.role === "USER"){
-                res.redirect('http://localhost:3000/home')
-            }
-        }
-        return res.redirect('http://localhost:3000')
+        const user = await User.findOne(userName)
+        return user
     } catch (err) {
         return null
     }
