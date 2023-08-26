@@ -5,6 +5,7 @@ const dotenv = require("dotenv")
 const routerAdmin = require("./router/routeAdmin")
 const routerUser = require("./router/routeUser")
 const routerFilm = require("./router/routeFilm")
+const routerMessage = require("./router/routeMessage")
 
 dotenv.config()
 const PORT = process.env.PORT || 5000
@@ -27,6 +28,7 @@ app.use('/public', express.static(path.join(__dirname, '/public')))
 app.use('/admin-api', routerAdmin)
 app.use('/user-api', routerUser)
 app.use('/film-api', routerFilm)
+app.use('/mess-api', routerMessage)
 app.use('/', (req,res)=> {res.send(`<h1>App listening on port ${PORT}!</h1>`)})
 
 server.listen(PORT, () =>
